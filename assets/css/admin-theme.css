@@ -1,0 +1,114 @@
+body {
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.panel,
+.panel-heading,
+.jumbotron,
+.navbar-default {
+    border-radius: 0px !important;
+}
+
+.panel-default {
+    border-color: #dddddd;
+    box-shadow: none;
+}
+
+.navbar-default {
+    border: none;
+    margin-bottom: 0;
+}
+
+.navbar-default,
+.panel-primary > .panel-heading {
+    background: #03A9F4;
+    color: #fff;
+}
+
+.panel-primary {
+    border-color: #dddddd;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default a {
+    color: #fff !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.box {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.page-header {
+    margin: 0 0 10px;
+}
+
+.tool-box {
+    margin-bottom: 10px;
+}
+
+.table thead tr th {
+
+}
+
+.list-group a.active,
+.list-group li.active,
+.list-group a.active:hover {
+    background-color: #eee;
+    border: 0;
+    color: #555;
+}
+
+.jumbotron {
+    background: url('../images/bg-cover.jpg') !important;
+    background-size: cover;
+    color: #fff;
+}
+
+.price {
+    font-weight: bold;
+    color: #99d811 !important;
+    font-size: 18px;
+}
+
+.thumbnail input[type="radio"] {
+    position: absolute;
+    margin-left: 5px;
+}
+
+.alamat {
+    font-weight: normal !important;
+}
+
+.tab-pane {
+    padding: 10px 0;
+}
+
+.radio,
+.radio label {
+    display: inline;
+}
+
+.radio {
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+.image-display {
+    width: 50px;
+}
+
+label.option:hover {
+  cursor: pointer;
+}
+
+.panel-info .panel-body {
+  background-color: #f7fafc;
+}
