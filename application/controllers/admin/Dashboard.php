@@ -11,6 +11,8 @@
 
         public function index()
         {
+
+            //coba
             $this->load->view('templates/admin/header');
             $this->load->view('templates/admin/sidemenu');
             $this->load->view('admin/dashboard_view');
