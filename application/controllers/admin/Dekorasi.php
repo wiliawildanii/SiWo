@@ -6,12 +6,38 @@ class Dekorasi extends Admin_Controller {
     public function __construct()
     {
         parent::__construct();
-        $config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max-size'] = 10240;
 
-        $this->load->library('upload',$config);
     }
+    private function _uploadImage(){
+      $date = date("ymdhis");
+      mkdir('./uploads/' . $date . '/', 0777, true);
+      $config['upload_path']          = './uploads/' . $date . '/';
+      $config['allowed_types'] = 'jpg|png|jpeg';
+      $config['max-size'] = 10240;
+
+
+      for ($i=1; $i <=3 ; $i++) {
+        $config['file_name']  = $i;
+        $this->load->library('upload',$config);
+          if(!empty($_FILES[$i]['name'])){
+              if(!$this->upload->do_upload('foto'))
+                  $this->upload->display_errors();
+              else
+                  echo "Foto berhasil di upload";
+                  $data = array('foto' => $this->upload->data());
+
+          }
+      }
+
+      return $date;
+    }
+
+    //     $config['upload_path'] = './uploads/';
+    //     $config['allowed_types'] = 'jpg|png|jpeg';
+    //     $config['max-size'] = 10240;
+
+    //     $this->load->library('upload',$config);
+    // }
 
     public function index()
     {
@@ -109,8 +135,7 @@ class Dekorasi extends Admin_Controller {
 
             if ($this->input->post('foto') != null) {
                 // UPLOAD IMAGE
-                $this->upload->do_upload('foto');
-                $data['foto'] = $this->upload->data('file_name');
+                //$this->upload->do_upload('foto');
             }
 
             // INSERT INTO DATABASE

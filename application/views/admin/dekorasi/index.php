@@ -28,7 +28,12 @@
                     <?php foreach($dekor->result() as $dekorasi): ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><img src="<?= base_url() . 'uploads/' . $dekorasi->foto ?>" alt="" class="image-display"> <?= $dekorasi->nama_dekorasi ?></td>
+
+                            <td>
+                            <?php for($i=0; $i<3; $i++){ ?>
+                                <img src="<?php echo base_url() . 'uploads/' . $dekorasi->foto ?>" alt="" class="image-display">
+                            <?php } ?>
+                            <?= $dekorasi->nama_dekorasi ?></td>
                             <td><?= $dekorasi->harga_dekorasi ?></td>
                             <td><?= $dekorasi->deskripsi ?></td>
                             <td width="10%">
