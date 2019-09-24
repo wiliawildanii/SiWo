@@ -28,7 +28,9 @@
                     <?php foreach($gedungs->result() as $gedung): ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><img src="<?= base_url() . 'uploads/' . $gedung->foto ?>" alt="" class="image-display"> <?= $gedung->nama_gedung ?></td>
+                            <td><img src="<?= base_url() . 'uploads/' . $gedung->foto ?>" alt="" class="image-display">
+                                <img src="<?= base_url() . 'uploads/' . $gedung->foto ?>" alt="" class="image-display">
+                                <img src="<?= base_url() . 'uploads/' . $gedung->foto ?>" alt="" class="image-display"> <?= $gedung->nama_gedung ?></td>
                             <td>Rp. <?= $gedung->harga_gedung ?></td>
                             <td><?= $gedung->deskripsi ?></td>
                             <td width="10%">
