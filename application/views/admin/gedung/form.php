@@ -27,6 +27,14 @@
           <input type="file" name="filefoto<?php echo $i;?>" required><br/>
       <?php endfor;?>
     </div>
+    <div class="col-sm-4">
+        <input type="file" name="foto">
+        <?php echo form_error('foto'); ?>
+    </div>
+    <div class="col-sm-4">
+        <input type="file" name="foto">
+        <?php echo form_error('foto'); ?>
+    </div>
 </div>
 <div style="width:100%;text-align:right;">
     <button class="btn btn-success" type="submit">Simpan</button>

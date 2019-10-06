@@ -1,3 +1,39 @@
+<?php
+public function __construct()
+    {
+        parent::__construct();
+    }
+
+    private function _uploadImage(){
+      $date = date("ymdhis");
+      mkdir('./uploads/' . $date . '/', 0777, true);
+      $config['upload_path']          = './uploads/' . $date . '/';
+      $config['allowed_types'] = 'jpg|png|jpeg';
+      $config['max-size'] = 10240;
+
+
+      for ($i=1; $i <=3 ; $i++) {
+        $config['file_name']            = $i . '.png';
+        $this->load->library('upload',$config);
+          if(!empty($_FILES['filefoto'.$i]['name'])){
+              if(!$this->upload->do_upload('filefoto'.$i))
+                  $this->upload->display_errors();
+              else
+                  echo "Foto berhasil di upload";
+          }
+      }
+
+      return $date;
+    }
+<?php for ($i=1; $i <=3 ; $i++) :?>
+          <input type="file" name="filefoto<?php echo $i;?>"><br/>
+      <?php endfor;?>
+<td>
+                            <?php for($i=0; $i<3; $i++){ ?>
+                                <img src="<?php echo base_url() . 'uploads/' . $dekorasi->foto ?> <?php if($i==0) echo '/1.png'; else echo '/1' . $i .'.png';?>" alt="" class="image-display">
+                             <?php } ?>
+
+                            <?= $dekorasi->nama_dekorasi ?> </td>
 
     <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
@@ -34,3 +70,4 @@
             $this->dbforge->drop_table('dekorasi');
         }
     }
+//

@@ -30,6 +30,13 @@ class Dekorasi extends Admin_Controller {
       return $date;
     }
 
+    //     $config['upload_path'] = './uploads/';
+    //     $config['allowed_types'] = 'jpg|png|jpeg';
+    //     $config['max-size'] = 10240;
+
+    //     $this->load->library('upload',$config);
+    // }
+
     public function index()
     {
         $data['dekor'] = $this->db->get('dekorasi');
@@ -128,8 +135,7 @@ class Dekorasi extends Admin_Controller {
 
             if ($this->input->post('foto') != null) {
                 // UPLOAD IMAGE
-                $this->upload->do_upload('foto');
-                $data['foto'] = $this->upload->data('file_name');
+                //$this->upload->do_upload('foto');
             }
 
             // INSERT INTO DATABASE
