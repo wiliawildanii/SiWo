@@ -17,8 +17,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Nama</th>
                         <th>Foto</th>
-                        <th>Jenis</th>
                         <th>Harga</th>
                         <th>Deskripsi</th>
                         <th>Tools</th>
@@ -29,8 +29,11 @@
                     <?php foreach($riases->result() as $rias): ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><img src="<?= base_url() . 'uploads/' . $rias->gambar; ?>" alt="" class="image-display"></td>
                             <td><?= $rias->nama_rias ?></td>
+                            <td>
+                            <?php for($i=0; $i<3; $i++){ ?>
+                                <img src="<?php echo base_url() . 'uploads/' . $rias->gambar ?> <?php if($i==0) echo '/1.png'; else echo '/1' . $i .'.png';?>" alt="" class="image-display">
+                             <?php } ?> </td>
                             <td>Rp <?= $rias->harga_rias ?></td>
                             <td><?= $rias->deskripsi ?></td>
                             <td width="10%">

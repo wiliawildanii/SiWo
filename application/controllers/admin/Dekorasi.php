@@ -6,11 +6,28 @@ class Dekorasi extends Admin_Controller {
     public function __construct()
     {
         parent::__construct();
-        $config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max-size'] = 10240;
+    }
 
+    private function _uploadImage(){
+      $date = date("ymdhis");
+      mkdir('./uploads/' . $date . '/', 0777, true);
+      $config['upload_path']          = './uploads/' . $date . '/';
+      $config['allowed_types'] = 'jpg|png|jpeg';
+      $config['max-size'] = 10240;
+
+
+      for ($i=1; $i <=3 ; $i++) {
+        $config['file_name']            = $i . '.png';
         $this->load->library('upload',$config);
+          if(!empty($_FILES['filefoto'.$i]['name'])){
+              if(!$this->upload->do_upload('filefoto'.$i))
+                  $this->upload->display_errors();
+              else
+                  echo "Foto berhasil di upload";
+          }
+      }
+
+      return $date;
     }
 
     public function index()
@@ -29,7 +46,7 @@ class Dekorasi extends Admin_Controller {
     }
 
     private function validation() {
-        $this->form_validation->set_rules('nama_dekorasi','Nama Dekorasi','required');
+        $this->form_validation->set_rules('nama_dekorasi','Nama Dekorasi','required|alpha_numeric_spaces|is_unique[dekorasi.nama_dekorasi]');
         $this->form_validation->set_rules('deskripsi','Deskripsi','required');
         $this->form_validation->set_rules('harga_dekorasi','Harga','required|numeric');
     }
@@ -44,12 +61,14 @@ class Dekorasi extends Admin_Controller {
         $this->validation();
 
         if ($this->form_validation->run() == FALSE) {
-            if (!$this->upload->do_upload('foto')) {
-                $error = array('error' => $this->upload->display_errors());
-            }
-            else {
-                $error = null;
-            }
+            // if (!$this->upload->do_upload('foto')) {
+            //     $error = array('error' => $this->upload->display_errors());
+            // }
+            // else {
+            //     $error = null;
+            // }
+
+            $error = validation_errors();
             $this->template('create',$error);
             return;
         } else {
@@ -60,8 +79,8 @@ class Dekorasi extends Admin_Controller {
             );
 
             // UPLOAD IMAGE
-            $this->upload->do_upload('foto');
-            $data['foto'] = $this->upload->data('file_name');
+            //$this->upload->do_upload('foto');
+            $data['foto'] = $this->_uploadImage();
 
             // INSERT INTO DATABASE
             $this->db->insert('dekorasi',$data);

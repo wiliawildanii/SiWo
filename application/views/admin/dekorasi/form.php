@@ -22,8 +22,9 @@
 <div class="form-group">
     <label for="deskripsi" class="control-label col-sm-3"> Foto Dekorasi </label>
     <div class="col-sm-4">
-        <input type="file" name="foto" value="">
-        <?php echo form_error('foto'); ?>
+      <?php for ($i=1; $i <=3 ; $i++) :?>
+          <input type="file" name="filefoto<?php echo $i;?>" required><br/>
+      <?php endfor;?>
     </div>
 </div>
 <div style="width:100%;text-align:right;">

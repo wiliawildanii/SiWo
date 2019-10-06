@@ -17,7 +17,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Jenis</th>
+                        <th>Nama</th>
+                        <th>Foto</th>
                         <th>Harga</th>
                         <th>Deskripsi</th>
                         <th>Tools</th>
@@ -28,8 +29,13 @@
                     <?php foreach($dekor->result() as $dekorasi): ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><img src="<?= base_url() . 'uploads/' . $dekorasi->foto ?>" alt="" class="image-display"> <?= $dekorasi->nama_dekorasi ?></td>
-                            <td><?= $dekorasi->harga_dekorasi ?></td>
+                            <td><?= $dekorasi->nama_dekorasi ?> </td>
+                            <td>
+                            <?php for($i=0; $i<3; $i++){ ?>
+                                <img src="<?php echo base_url() . 'uploads/' . $dekorasi->foto ?> <?php if($i==0) echo '/1.png'; else echo '/1' . $i .'.png';?>" alt="" class="image-display">
+                             <?php } ?>
+                           </td>
+                            <td>Rp. <?= $dekorasi->harga_dekorasi ?></td>
                             <td><?= $dekorasi->deskripsi ?></td>
                             <td width="10%">
                                 <a href="<?php echo base_url() . 'admin/dekorasi/edit/'.$dekorasi->dekorasi_id; ?>" class="btn btn-xs btn-info" title="Edit"><i class="fa fa-pencil fa-fw"></i></a>

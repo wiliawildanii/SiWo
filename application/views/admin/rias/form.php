@@ -22,8 +22,9 @@
 <div class="form-group">
     <label for="gambar" class="control-label col-sm-3"> Gambar </label>
     <div class="col-sm-4">
-        <input type="file" name="gambar">
-        <?php echo isset($error) ? $error : ''; ?>
+      <?php for ($i=1; $i <=3 ; $i++) :?>
+          <input type="file" name="filefoto<?php echo $i;?>" required><br/>
+      <?php endfor;?>
     </div>
 </div>
 <div style="width:100%;text-align:right;">

@@ -17,7 +17,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Gedung</th>
+                        <th>Nama</th>
+                        <th>Foto</th>
                         <th>Harga</th>
                         <th>Deskripsi</th>
                         <th>Tools</th>
@@ -28,7 +29,12 @@
                     <?php foreach($gedungs->result() as $gedung): ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><img src="<?= base_url() . 'uploads/' . $gedung->foto ?>" alt="" class="image-display"> <?= $gedung->nama_gedung ?></td>
+                            <td><?= $gedung->nama_gedung ?> </td>
+                            <td>
+                            <?php for($i=0; $i<3; $i++){ ?>
+                                <img src="<?php echo base_url() . 'uploads/' . $gedung->foto ?> <?php if($i==0) echo '/1.png'; else echo '/1' . $i .'.png';?>" alt="" class="image-display">
+                             <?php } ?>
+                           </td>
                             <td>Rp. <?= $gedung->harga_gedung ?></td>
                             <td><?= $gedung->deskripsi ?></td>
                             <td width="10%">
