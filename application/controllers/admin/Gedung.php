@@ -22,19 +22,26 @@ class Gedung extends Admin_Controller {
       $config['allowed_types'] = 'jpg|png|jpeg';
       $config['max-size'] = 10240;
 
-
+      $up=true;
       for ($i=1; $i <=3 ; $i++) {
         $config['file_name']            = $i . '.png';
         $this->load->library('upload',$config);
           if(!empty($_FILES['filefoto'.$i]['name'])){
-              if(!$this->upload->do_upload('filefoto'.$i))
+              if(!$this->upload->do_upload('filefoto'.$i)){
                   $this->upload->display_errors();
-              else
+                  $up=false;
+                  return false;}
+              else{
                   echo "Foto berhasil di upload";
+                }
           }
       }
 
-      return $date;
+      if($up==true){
+        return $date;
+      }else{
+        return false;
+      }
     }
 
     private function template($template,$data = null)
@@ -80,16 +87,24 @@ class Gedung extends Admin_Controller {
             // UPLOAD IMAGE
             // $this->upload->do_upload('foto');
             // $data['foto'] = $this->upload->data('file_name');
-            $data['foto'] = $this->_uploadImage();
+            $upload=$this->_uploadImage();
+            if($upload==""){
+              $error = "Upload gagal";
+              $this->template('create',$error);
+              $this->session->set_flashdata('success','Upload gagal');
+            }else{
+              $data['foto'] = $this->_uploadImage();
+              $this->db->insert('gedung',$data);
+              $this->session->set_flashdata('success','Data berhasil disimpan!');
+            }
 
 
             // var_dump($data);
 
             // INSERT INTO DATABASE
-            $this->db->insert('gedung',$data);
 
             // REDIRECT TO USER PAGE
-            $this->session->set_flashdata('success','Data berhasil disimpan!');
+            
             redirect(base_url() . 'admin/gedung/');
         }
     }

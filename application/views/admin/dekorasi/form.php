@@ -23,7 +23,7 @@
     <label for="deskripsi" class="control-label col-sm-3"> Foto Dekorasi </label>
     <div class="col-sm-4">
       <?php for ($i=1; $i <=3 ; $i++) :?>
-          <input type="file" name="filefoto<?php echo $i;?>" required><br/>
+          <input type="file" name="filefoto<?php echo $i;?>" required ><br/>
       <?php endfor;?>
     </div>
 </div>
